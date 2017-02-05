@@ -20,8 +20,13 @@ export default function(){
         keyboard,
         mouse,
         lastFrameTimeMs = 0,
-        canvasWrapper,
-        dt = GLOBALS.timestep;
+        canvasWrapper;
+
+    // Time stuff
+    var t = 0.0;
+    const dt = 0.0001;
+    var currentTime = (new Date).getTime() / 1000;
+    var accumulator = 0.0;
 
 
     function init(canvasId, _game)
@@ -41,7 +46,7 @@ export default function(){
     };
 
 
-    function update()
+    function update(dt)
     {
         // Updates input
         var keyboardInput = keyboard.pressedKeys();
@@ -49,7 +54,7 @@ export default function(){
 
         var input = { keyboard: keyboardInput, mouse: mouseInput };
 
-        game.update({ input: input });
+        game.update({ input: input, dt: dt });
     };
 
 
@@ -61,18 +66,24 @@ export default function(){
     };
 
 
-    function gameLoop(timestamp)
+    function gameLoop()
     {
-        // Limit frame rate
-        if (timestamp < lastFrameTimeMs + GLOBALS.timestep)
+        // NEW
+        var newTime = (new Date).getTime() / 1000;
+        var frameTime = newTime - currentTime;
+        currentTime = newTime;
+
+        accumulator += frameTime;
+
+        while ( accumulator >= dt )
         {
-            window.requestAnimFrame(gameLoop);
+            console.log(accumulator);
+            update(dt);
+            accumulator -= dt;
+            t += dt;
         }
+        // NEW
 
-        lastFrameTimeMs = timestamp;
-
-
-        update();
         render();
         requestAnimationFrame(gameLoop);
     };
