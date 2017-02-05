@@ -77,7 +77,6 @@ export default function() {
 
         while ( accumulator >= dt )
         {
-            console.log(accumulator);
             update(dt);
             accumulator -= dt;
             t += dt;
