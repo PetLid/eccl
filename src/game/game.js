@@ -8,20 +8,21 @@ export default function()
         {
             x: 0,
             y: 0,
-            dx: 5,
-            dy: 5,
+            dx: .5,
+            dy: .5,
             width: 20,
             height: 20
         };
     }
 
 
-    function update()
+    function update(state)
     {
         var rect = this.rectangle;
+        var dt = state.dt;
 
-        rect.x += rect.dx;
-        rect.y += rect.dy;
+        rect.x += rect.dx * dt;
+        rect.y += rect.dy * dt;
 
         var canvas = this.canvas;
 
