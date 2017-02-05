@@ -11,7 +11,7 @@ const CanvasWrapper = require(UTILS_FOLDER + "canvas-wrapper.js");
 const GLOBALS = require("./globals.js");
 require(UTILS_FOLDER + "request-anim-frame.js");
 
-export default function(){
+export default function() {
     'use strict';
 
     var canvas,
@@ -24,7 +24,7 @@ export default function(){
 
     // Time stuff
     var t = 0.0;
-    const dt = 0.0001;
+    const dt = GLOBALS.timestep;
     var currentTime = (new Date).getTime() / 1000;
     var accumulator = 0.0;
 
