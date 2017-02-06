@@ -1,3 +1,5 @@
+import Game from "./game/game.js";
+
 module.exports = {
-    Game: require("./game/game.js")
+    Game: Game
 }
