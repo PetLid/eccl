@@ -1,6 +1,11 @@
-export default function()
+class Game
 {
-    function init(canvas)
+    constructor()
+    {
+        // Do naught
+    }
+
+    init(canvas)
     {
         this.canvas = canvas;
 
@@ -15,8 +20,7 @@ export default function()
         };
     }
 
-
-    function update(state)
+    update(state)
     {
         var rect = this.rectangle;
         var dt = state.dt;
@@ -30,16 +34,12 @@ export default function()
         rect.dy = rect.y <= 0 || rect.y + rect.height >= canvas.height ? -rect.dy : rect.dy;
     }
 
-    function render(ctx)
+    render(ctx)
     {
         var rect = this.rectangle;
 
         ctx.fillRect(rect.x, rect.y, rect.width, rect.height);
     }
-
-    return {
-        'init': init,
-        'update': update,
-        'render': render
-    };
 }
+
+module.exports = Game;
