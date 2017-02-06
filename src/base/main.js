@@ -18,7 +18,7 @@ function onReady(fn) {
 function startGame()
 {
     var gameWrapper = GameWrapper();
-    var game = new Game();
+    var game = Game();
 
     gameWrapper.init('main-canvas', game);
     gameWrapper.gameLoop();

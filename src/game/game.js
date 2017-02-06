@@ -1,45 +1,45 @@
-class Game
+export default function()
 {
-    constructor()
-    {
-        // Do naught
-    }
+    var canvas,
+        rectangle = {};
 
-    init(canvas)
+    function init(_canvas)
     {
-        this.canvas = canvas;
+        canvas = _canvas;
 
-        this.rectangle =
+        rectangle =
         {
             x: 0,
             y: 0,
-            dx: .5,
-            dy: .5,
+            dx: 500,
+            dy: 500,
             width: 20,
             height: 20
         };
     }
 
-    update(state)
+    function update(state)
     {
-        var rect = this.rectangle;
+        var rect = rectangle;
         var dt = state.dt;
 
         rect.x += rect.dx * dt;
         rect.y += rect.dy * dt;
 
-        var canvas = this.canvas;
-
         rect.dx = rect.x <= 0 || rect.x + rect.width >= canvas.width ? -rect.dx : rect.dx;
         rect.dy = rect.y <= 0 || rect.y + rect.height >= canvas.height ? -rect.dy : rect.dy;
     }
 
-    render(ctx)
+    function render(ctx)
     {
-        var rect = this.rectangle;
+        var rect = rectangle;
 
         ctx.fillRect(rect.x, rect.y, rect.width, rect.height);
     }
-}
 
-module.exports = Game;
+    return {
+        'init': init,
+        'update': update,
+        'render': render
+    };
+};
