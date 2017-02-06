@@ -24,7 +24,7 @@ export default function() {
 
     // Time stuff
     var t = 0.0;
-    const dt = GLOBALS.timestep;
+    const dt = GLOBALS.timestep * 0.01;
     var currentTime = (new Date).getTime() / 1000;
     var accumulator = 0.0;
 
@@ -81,7 +81,9 @@ export default function() {
             accumulator -= dt;
             t += dt;
         }
+
         // NEW
+        //console.log("FPS: " + 1/frameTime);
 
         render();
         requestAnimationFrame(gameLoop);
