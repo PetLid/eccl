@@ -1,6 +1,9 @@
 // Imports
 import GameWrapper from "./gameWrapper.js";
-import Game from "../game/game.js";
+const CONFIG = require("../config.js");
+var Game = CONFIG.Game;
+
+console.log("Ey, " + CONFIG.gameURL);
 
 // Function for determining if document is ready
 function onReady(fn) {
@@ -15,7 +18,7 @@ function onReady(fn) {
 function startGame()
 {
     var gameWrapper = GameWrapper();
-    var game = Game();
+    var game = new Game();
 
     gameWrapper.init('main-canvas', game);
     gameWrapper.gameLoop();
